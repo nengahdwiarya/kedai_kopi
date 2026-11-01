@@ -104,6 +104,7 @@ textarea{resize:vertical}.full-width{width:100%}.form-note{font-size:11px;color:
 <button class="menu-toggle" id="menuToggle">☰</button>
 <nav class="nav" id="nav">
 <a href="#home">Beranda</a><a href="#about">Tentang</a><a href="#menu">Menu</a><a href="#reservation">Reservasi</a><a href="#tracking">Lacak Pesanan</a>
+<a href="#admin">Admin</a>
 </nav>
 <button class="cart-button" id="openCart">🛒 Keranjang <span id="cartCount">0</span></button>
 </div>
@@ -187,6 +188,9 @@ textarea{resize:vertical}.full-width{width:100%}.form-note{font-size:11px;color:
 <div class="admin-top"><h3>Ringkasan operasional</h3><button class="btn btn-outline" id="adminLogout">Keluar</button></div>
 <div class="stats-grid" id="adminStats"></div><h3>Pesanan masuk</h3><div class="admin-list" id="adminOrders"></div><h3>Reservasi</h3><div class="admin-list" id="adminReservations"></div>
 <button class="btn btn-outline" id="exportOrders">Ekspor Pesanan CSV</button>
+<button class="btn btn-outline" id="exportReviews">
+  Ekspor Rating & Ulasan ke Excel
+</button>
 </div></div>
 </section>
 </main>
@@ -906,7 +910,52 @@ $("exportOrders")?.addEventListener("click", () => {
 
   toast("File CSV berhasil dibuat.");
 });
+/* =========================================
+   EKSPOR RATING DAN ULASAN KE EXCEL
+========================================= */
 
+$("exportReviews")?.addEventListener("click", () => {
+  if (!reviews.length) {
+    toast("Belum ada ulasan pelanggan.");
+    return;
+  }
+
+  const rows = [
+    ["Nama Pelanggan", "Rating", "Komentar", "Tanggal"],
+
+    ...reviews.map(review => [
+      review.name,
+      review.rating + " Bintang",
+      review.comment,
+      review.date
+    ])
+  ];
+
+  const csv = rows.map(row =>
+    row.map(value =>
+      '"' + String(value ?? "").replace(/"/g, '""') + '"'
+    ).join(";")
+  ).join("\r\n");
+
+  const blob = new Blob(
+    ["\uFEFF" + csv],
+    { type: "text/csv;charset=utf-8;" }
+  );
+
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = "rating-ulasan-kopi-plm.csv";
+
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+
+  toast("Data rating berhasil diekspor!");
+});
 /* INISIALISASI */
 if ($("year")) {
   $("year").textContent = new Date().getFullYear();
