@@ -1,971 +1,309 @@
-
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#211710">
-<title>Kopi P,L,M | Coffee & Eatery</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{--brown:#38251d;--dark:#211710;--gold:#c69a60;--cream:#f8f3eb;--white:#fff;--text:#40332c;--muted:#897c71;--line:#e9ded1;--shadow:0 12px 35px #21171012}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--text);font-family:"DM Sans",sans-serif;line-height:1.6}a{text-decoration:none;color:inherit}button,input,select,textarea{font:inherit}button{cursor:pointer}.container{width:min(1120px,90%);margin:auto}
-.announcement{text-align:center;background:var(--dark);color:#ead5b5;padding:8px;font-size:12px}
-.header{position:sticky;top:0;z-index:20;background:#f8f3ebf5;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.navbar{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{display:flex;align-items:center;gap:10px;font-family:"Playfair Display",serif;font-size:22px;font-weight:700;color:var(--brown)}
-.brand b{color:var(--gold)}.brand small{display:block;font:700 9px "DM Sans";letter-spacing:3px;color:var(--muted)}
-.brand-icon{width:37px;height:37px;border-radius:50%;background:var(--brown);color:var(--gold);display:grid;place-items:center}
-.nav{display:flex;align-items:center;gap:22px}.nav a{font-size:13px;font-weight:700}.nav a:hover{color:var(--gold)}
-.menu-toggle{display:none;border:0;background:none;font-size:25px;color:var(--brown)}
-.btn,.cart-button{border:0;border-radius:30px;padding:12px 19px;font-size:13px;font-weight:800;display:inline-flex;justify-content:center;align-items:center;gap:7px}
-.btn-gold{background:var(--gold);color:var(--dark)}.btn-gold:hover{background:#d6ad79}
-.btn-outline{background:transparent;border:1px solid var(--gold);color:var(--brown)}
-.cart-button{background:var(--brown);color:white}
-.hero{min-height:600px;background:linear-gradient(90deg,#211710e8,#21171052),url("https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=1800") center/cover;display:flex;align-items:center;color:white}
-.hero-content{width:min(1120px,90%);margin:auto;padding:90px 0}.eyebrow{color:var(--gold);font-size:11px;font-weight:800;letter-spacing:3px}
-h1,h2,h3{font-family:"Playfair Display",serif;color:var(--brown);line-height:1.2}
-.hero h1{font-size:clamp(45px,8vw,82px);color:white;margin:15px 0}.hero h1 span,h2 span{color:var(--gold)}
-.hero-content>p{max-width:520px;color:#eee0d3}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-.hero-info{display:flex;gap:30px;margin-top:35px}.hero-info div{display:grid}.hero-info small{color:#e2d3c6}
-.benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:25px 5%;background:white}
-.benefits>div{display:flex;align-items:center;gap:12px}.benefits span{display:grid}.benefits small{font-size:11px;color:var(--muted)}
-.section{padding:80px 0}.section-heading{text-align:center;max-width:680px;margin:0 auto 35px}
-.section-heading h2{font-size:clamp(30px,5vw,43px);margin:10px 0}.section-heading p{color:var(--muted)}
-.about{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center}
-.about-image img{width:100%;height:390px;object-fit:cover;border-radius:16px}
-.about-content p{color:var(--muted);line-height:1.9}.text-link{color:var(--brown);font-weight:800}
-.menu-section{background:#eee5d9}.menu-tools{display:flex;gap:12px;margin-bottom:20px}
-.menu-tools input,.menu-tools select{padding:13px;border:1px solid var(--line);border-radius:9px;background:white;min-width:0}
-.menu-tools input{flex:1}.category-list{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:25px}
-.category{padding:9px 17px;border-radius:25px;border:1px solid var(--line);background:white;color:var(--brown);font-size:12px;font-weight:700}
-.category.active,.category:hover{background:var(--brown);color:white}
-.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.menu-card{background:white;border-radius:15px;overflow:hidden;box-shadow:var(--shadow)}
-.menu-card img{width:100%;height:190px;object-fit:cover}.menu-body{padding:16px}
-.menu-body h3{font-size:17px;margin:0}.menu-body p{font-size:12px;color:var(--muted);min-height:38px}
-.menu-meta{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.price{font-weight:800;color:var(--brown)}.pill{background:#f3e8d9;color:var(--brown);border-radius:20px;padding:4px 9px;font-size:10px}
-.menu-card .btn{width:100%;margin-top:12px}.promo{background:var(--brown);color:white;padding:45px 8%;display:flex;align-items:center;justify-content:space-between;gap:25px}
-.promo h2{color:white;font-size:34px;margin:8px 0}.promo p{color:#e4d5c8}
-.form-card{max-width:680px;margin:auto;background:white;padding:25px;border-radius:16px;box-shadow:var(--shadow);display:grid;gap:15px}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
-label{display:grid;gap:7px;font-size:12px;font-weight:700}
-input,select,textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:8px;background:white;color:var(--text)}
-textarea{resize:vertical}.full-width{width:100%}.form-note{font-size:11px;color:var(--muted)}
-.tracking-section{background:#eee5d9}.tracking-form{display:flex;gap:10px;max-width:580px;margin:auto}
-.tracking-form input{flex:1;min-width:0;border-radius:30px;padding:13px 18px}
-.tracking-result{max-width:580px;margin:18px auto;text-align:center}.result-box{background:white;padding:18px;border-radius:12px}
-.review-section{background:var(--cream)}.admin-section{background:#eee5d9}.admin-panel{max-width:900px;margin:auto}
-.admin-top{display:flex;justify-content:space-between;align-items:center}
-.admin-list{background:white;padding:15px;border-radius:12px;margin-bottom:25px;overflow:auto}
-.admin-row{padding:12px 0;border-bottom:1px solid var(--line);font-size:13px}
-.admin-row button,.admin-row select{margin:5px;padding:7px}
-.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
-.stat{background:white;border-radius:12px;padding:18px}.stat strong{display:block;font-size:22px;color:var(--brown)}
-.footer{background:var(--dark);color:white;padding:45px 5% 20px}
-.footer-main{max-width:1120px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px}
-.footer h3{color:var(--gold)}.footer-main>div>a:not(.brand){display:block;color:#ddd0c4;font-size:13px;margin:8px 0}
-.footer p{color:#cbbcaf;font-size:13px}
-.footer-bottom{max-width:1120px;margin:30px auto 0;padding-top:15px;border-top:1px solid #ffffff25;display:flex;justify-content:space-between;gap:15px;font-size:11px;color:#cbbcaf}
-.overlay{position:fixed;inset:0;background:#0008;z-index:40;display:none}.overlay.show{display:block}
-.cart-drawer{position:fixed;right:-450px;top:0;width:min(420px,100%);height:100vh;background:white;z-index:50;padding:20px;overflow:auto;transition:.25s;display:flex;flex-direction:column;gap:15px}
-.cart-drawer.open{right:0}.cart-header{display:flex;justify-content:space-between;align-items:center}
-.cart-header h2{font-size:25px}.icon-button{border:0;background:none;font-size:22px}
-.cart-items{flex:1}.cart-line{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
-.cart-line small{display:block;color:var(--muted)}.qty{display:flex;align-items:center;gap:7px}
-.qty button{border:0;border-radius:50%;background:#f3e8d9;width:27px;height:27px}
-.voucher-row{display:flex;gap:8px}.cart-summary{border-top:1px solid var(--line);padding-top:12px}
-.cart-summary p{display:flex;justify-content:space-between;margin:8px 0}.cart-total{font-size:19px;color:var(--brown)}
-.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--brown);color:white;padding:12px 20px;border-radius:30px;z-index:90;display:none;max-width:90%;text-align:center}
-.toast.show{display:block}[hidden]{display:none!important}
-@media(max-width:800px){.nav{gap:10px}.nav a{font-size:11px}.menu-grid{grid-template-columns:repeat(2,1fr)}.benefits{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:620px){
-.navbar{min-height:68px}.menu-toggle{display:block}
-.nav{display:none;position:absolute;top:68px;left:0;right:0;background:var(--cream);padding:20px 5%;flex-direction:column;align-items:flex-start}
-.nav.open{display:flex}.nav a{font-size:14px}.brand{font-size:19px}
-.cart-button{padding:9px 12px;font-size:11px}.hero{min-height:570px}.hero-content{padding:65px 0}
-.hero h1{font-size:49px}.benefits{gap:15px;padding:20px 5%}.benefits>div{font-size:13px}
-.section{padding:55px 0}.about{grid-template-columns:1fr;gap:25px}.about-image img{height:250px}
-.menu-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.menu-card img{height:125px}.menu-body{padding:11px}.menu-body h3{font-size:13px}.menu-body p{font-size:11px}
-.menu-tools{flex-direction:column}.promo{flex-direction:column;align-items:flex-start;padding:35px 6%}
-.form-grid{grid-template-columns:1fr}.tracking-form{flex-direction:column}
-.stats-grid{grid-template-columns:1fr 1fr}.footer-main{grid-template-columns:1fr}.footer-bottom{flex-wrap:wrap}
-}
-@media(max-width:360px){.menu-grid{grid-template-columns:1fr}.menu-card img{height:180px}}
-</style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kopi Kenangan Senja</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,700&display=swap"
+    rel="stylesheet">
+
+  <!-- Feather Icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
+
+  <!-- My Style -->
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<div class="announcement">☕ Kopi enak, makanan hangat, suasana nyaman.</div>
-<header class="header">
-<div class="container navbar">
-<a href="#home" class="brand"><span class="brand-icon">P</span><span>Kopi <b>P,L,M</b><small>COFFEE & EATERY</small></span></a>
-<button class="menu-toggle" id="menuToggle">☰</button>
-<nav class="nav" id="nav">
-<a href="#home">Beranda</a><a href="#about">Tentang</a><a href="#menu">Menu</a><a href="#reservation">Reservasi</a><a href="#tracking">Lacak Pesanan</a>
-<a href="#admin">Admin</a>
-</nav>
-<button class="cart-button" id="openCart">🛒 Keranjang <span id="cartCount">0</span></button>
-</div>
-</header>
-<main>
-<section class="hero" id="home">
-<div class="hero-content">
-<span class="eyebrow">YOUR DAILY COFFEE SPOT</span>
-<h1>Secangkir kopi,<br><span>sejuta cerita.</span></h1>
-<p>Temukan kopi favorit, makanan lezat, dan tempat nyaman untuk menikmati setiap momen bersama Kopi P,L,M.</p>
-<div class="hero-actions"><a href="#menu" class="btn btn-gold">Jelajahi Menu ↗</a><a href="#about" class="btn btn-outline" style="color:white">Tentang Kami</a></div>
-<div class="hero-info"><div><strong>☕ Fresh</strong><small>Diracik saat dipesan</small></div><div><strong>🍽️ Beragam</strong><small>Kopi dan makanan</small></div></div>
-</div>
-</section>
-<section class="benefits">
-<div>☕ <span><b>Freshly Brewed</b><small>Kopi diracik segar</small></span></div>
-<div>🥘 <span><b>Fresh Food</b><small>Menu untuk setiap selera</small></span></div>
-<div>🤎 <span><b>Cozy Place</b><small>Nyaman untuk berkumpul</small></span></div>
-<div>✨ <span><b>Good Moments</b><small>Ciptakan cerita baru</small></span></div>
-</section>
-<section class="section container about" id="about">
-<div class="about-image"><img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=900" alt="Suasana kedai kopi"></div>
-<div class="about-content"><span class="eyebrow">CERITA KAMI</span><h2>Bukan sekadar kopi,<br>tapi tempat untuk <span>kembali.</span></h2><p>Kopi P,L,M hadir untuk menemani hari kamu. Mulai dari kopi sebelum beraktivitas, makanan saat lapar, sampai obrolan panjang bersama orang-orang tersayang.</p><a href="#menu" class="text-link">Temukan favoritmu ↗</a></div>
-</section>
-<section class="section menu-section" id="menu">
-<div class="container">
-<div class="section-heading"><span class="eyebrow">OUR MENU</span><h2>Ada yang bikin <span>penasaran?</span></h2><p>Pilih menu favoritmu, lalu pesan dengan mudah.</p></div>
-<div class="menu-tools">
-<input id="searchMenu" type="search" placeholder="Cari kopi, makanan, camilan...">
-<select id="sortMenu"><option value="default">Urutan awal</option><option value="low">Harga terendah</option><option value="high">Harga tertinggi</option><option value="name">Nama A-Z</option></select>
-</div>
-<div class="category-list" id="categoryList">
-<button class="category active" data-category="all">Semua</button>
-<button class="category" data-category="coffee">Coffee</button>
-<button class="category" data-category="noncoffee">Non-Coffee</button>
-<button class="category" data-category="food">Makanan</button>
-<button class="category" data-category="snack">Camilan</button>
-<button class="category" data-category="dessert">Dessert</button>
-</div>
-<div class="menu-grid" id="menuGrid"></div>
-</div>
-</section>
-<section class="promo"><div><span class="eyebrow">A LITTLE TREAT FOR YOU</span><h2>Punya kode voucher?</h2><p>Gunakan voucher yang tersedia saat checkout.</p></div><a href="#menu" class="btn btn-gold">Pilih Menu ↗</a></section>
-<section class="section container" id="reservation">
-<div class="section-heading"><span class="eyebrow">SAVE YOUR SEAT</span><h2>Pesan meja <span>lebih mudah.</span></h2><p>Isi detail kunjunganmu untuk mengajukan reservasi.</p></div>
-<form id="reservationForm" class="form-card">
-<div class="form-grid">
-<label>Nama lengkap<input name="name" required placeholder="Nama kamu"></label>
-<label>Nomor WhatsApp<input name="phone" required type="tel" placeholder="08xxxxxxxxxx"></label>
-<label>Tanggal<input name="date" type="date" required id="reservationDate"></label>
-<label>Waktu<input name="time" type="time" required></label>
-<label>Jumlah pengunjung<input name="guests" type="number" min="1" max="30" value="2" required></label>
-<label>Nomor meja pilihan<select name="table"><option value="">Tidak memilih</option><option>Meja 1</option><option>Meja 2</option><option>Meja 3</option><option>Meja 4</option><option>Meja 5</option></select></label>
-</div>
-<label>Catatan tambahan<textarea name="notes" rows="3" placeholder="Contoh: meja dekat jendela"></textarea></label>
-<button type="submit" class="btn btn-gold full-width">Ajukan Reservasi</button>
-<p class="form-note">Permintaan reservasi akan dikirim melalui WhatsApp untuk konfirmasi.</p>
-</form>
-</section>
-<section class="section tracking-section" id="tracking">
-<div class="container"><div class="section-heading"><span class="eyebrow">ORDER TRACKING</span><h2>Pesananmu sampai <span>mana?</span></h2><p>Masukkan kode pesanan dari perangkat ini untuk melihat status demo.</p></div>
-<form id="trackingForm" class="tracking-form"><input name="orderCode" required placeholder="Contoh: PLM-ABC123"><button type="submit" class="btn btn-gold">Lacak Pesanan</button></form>
-<div id="trackingResult" class="tracking-result"></div>
-</div>
-</section>
-<section class="section review-section" id="reviews">
-<div class="container"><div class="section-heading"><span class="eyebrow">YOUR STORY MATTERS</span><h2>Ceritakan pengalaman <span>kamu.</span></h2><p>Ulasan membantu kami menyajikan pengalaman yang lebih baik.</p></div>
-<form id="reviewForm" class="form-card">
-<label>Nama<input name="name" required placeholder="Nama kamu"></label>
-<label>Rating<select name="rating"><option value="5">★★★★★ - Sangat puas</option><option value="4">★★★★ - Puas</option><option value="3">★★★ - Cukup</option><option value="2">★★ - Kurang puas</option><option value="1">★ - Tidak puas</option></select></label>
-<label>Ulasan<textarea name="comment" rows="3" required placeholder="Ceritakan pengalamanmu..."></textarea></label>
-<button class="btn btn-gold full-width">Kirim Ulasan</button>
-</form>
-<div id="reviewsList" class="stats-grid"></div>
-</div>
-</section>
-<section class="section admin-section" id="admin">
-<div class="container"><div class="section-heading"><span class="eyebrow">MANAGEMENT</span><h2>Dashboard <span>pengelola.</span></h2><p>Dashboard demo untuk melihat pesanan yang dibuat pada perangkat ini.</p></div>
-<div class="form-card" id="adminLoginPanel"><label>Password demo admin<input id="adminPassword" type="password" placeholder="Masukkan password demo"></label><button class="btn btn-gold" id="adminLogin">Masuk Dashboard</button><p class="form-note">Password demo: plmadmin. Ini bukan sistem keamanan untuk penggunaan produksi.</p></div>
-<div class="admin-panel" id="adminPanel" hidden>
-<div class="admin-top"><h3>Ringkasan operasional</h3><button class="btn btn-outline" id="adminLogout">Keluar</button></div>
-<div class="stats-grid" id="adminStats"></div><h3>Pesanan masuk</h3><div class="admin-list" id="adminOrders"></div><h3>Reservasi</h3><div class="admin-list" id="adminReservations"></div>
-<button class="btn btn-outline" id="exportOrders">Ekspor Pesanan CSV</button>
-<button class="btn btn-outline" id="exportReviews">
-  Ekspor Rating & Ulasan ke Excel
-</button>
-</div></div>
-</section>
-</main>
-<footer class="footer"><div class="footer-main">
-<div><a href="#home" class="brand" style="color:white">☕ Kopi <b>P,L,M</b></a><p>Tempat sederhana untuk kopi yang nikmat dan cerita yang hangat.</p></div>
-<div><h3>Navigasi</h3><a href="#about">Tentang kami</a><a href="#menu">Menu</a><a href="#reservation">Reservasi</a></div>
-<div><h3>Hubungi kami</h3><p>Alamat kedai dapat diatur di kode JavaScript.</p><a href="#home">Kembali ke atas ↑</a></div>
-</div><div class="footer-bottom"><span>© <span id="year"></span> Kopi P,L,M</span><a href="#admin">Admin</a></div></footer>
-<div class="overlay" id="cartOverlay"></div>
-<aside class="cart-drawer" id="cartDrawer">
-<div class="cart-header"><h2>Keranjang 🛒</h2><button id="closeCart" class="icon-button">✕</button></div>
-<div id="cartItems" class="cart-items"></div>
-<div class="voucher-row"><input id="voucherCode" placeholder="Kode voucher"><button id="applyVoucher" class="btn btn-outline">Pakai</button></div>
-<p id="voucherMessage" class="form-note"></p>
-<div class="cart-summary"><p><span>Subtotal</span><b id="cartSubtotal">Rp0</b></p><p><span>Diskon</span><b id="cartDiscount">Rp0</b></p><p class="cart-total"><span>Total</span><b id="cartTotal">Rp0</b></p></div>
-<form id="checkoutForm">
-<label>Nama<input name="name" required placeholder="Nama pemesan"></label>
-<label>Nomor WhatsApp<input name="phone" type="tel" required placeholder="08xxxxxxxxxx"></label>
-<label>Nomor meja<input name="table" type="number" min="1" placeholder="Opsional"></label>
-<label>Catatan pesanan<textarea name="notes" rows="2" placeholder="Contoh: gula sedikit"></textarea></label>
-<button type="submit" class="btn btn-gold full-width">Buat Pesanan</button>
-</form>
-</aside>
-<div id="toast" class="toast"></div>
 
-
-<script>
-"use strict";
-
-/* =========================================
-   PENGATURAN KEDAI
-========================================= */
-const WHATSAPP_KEDAI = "62881025467022"; // Ganti dengan nomor WhatsApp kedai
-const ADMIN_PASSWORD = "plmadmin";
-
-const $ = id => document.getElementById(id);
-
-const rupiah = n => new Intl.NumberFormat("id-ID", {
-  style: "currency",
-  currency: "IDR",
-  maximumFractionDigits: 0
-}).format(Number(n) || 0);
-
-const safe = value => String(value ?? "").replace(/[&<>"']/g, c => ({
-  "&": "&amp;",
-  "<": "&lt;",
-  ">": "&gt;",
-  '"': "&quot;",
-  "'": "&#39;"
-}[c]));
-
-const digits = value => String(value || "").replace(/\D/g, "");
-
-function toast(message) {
-  const el = $("toast");
-  if (!el) return;
-  el.textContent = message;
-  el.classList.add("show");
-  clearTimeout(toast.timer);
-  toast.timer = setTimeout(() => el.classList.remove("show"), 2600);
-}
-
-function readData(key, fallback) {
-  try {
-    const value = localStorage.getItem(key);
-    return value ? JSON.parse(value) : fallback;
-  } catch (error) {
-    console.warn("Data lokal tidak bisa dibaca:", key, error);
-    return fallback;
-  }
-}
-
-function saveData(key, value) {
-  try {
-    localStorage.setItem(key, JSON.stringify(value));
-    return true;
-  } catch (error) {
-    toast("Penyimpanan penuh atau tidak tersedia di browser.");
-    return false;
-  }
-}
-
-function makeCode(prefix) {
-  return prefix + "-" + Math.random().toString(36).slice(2, 8).toUpperCase();
-}
-
-function openWhatsApp(message) {
-  const number = digits(WHATSAPP_KEDAI);
-  if (!number) {
-    toast("Nomor WhatsApp kedai belum diatur.");
-    return;
-  }
-
-  const url = "https://wa.me/" + number + "?text=" + encodeURIComponent(message);
-  window.open(url, "_blank");
-}
-
-/* =========================================
-   DATA MENU
-========================================= */
-const products = [
-  ["Espresso", "coffee", 18000, "Kopi pekat dengan karakter rasa kuat.", "photo-1510707577719-ae7c14805e3a"],
-  ["Americano", "coffee", 20000, "Espresso dengan air panas.", "photo-1514432324607-a09d9b4aefdd"],
-  ["Cafe Latte", "coffee", 25000, "Espresso lembut dengan steamed milk.", "photo-1461023058943-07fcbe16d735"],
-  ["Cappuccino", "coffee", 24000, "Kopi dengan foam susu lembut.", "photo-1534778101976-62847782c213"],
-  ["Es Kopi Susu Gula Aren", "coffee", 22000, "Kopi, susu, dan gula aren.", "photo-1461023058943-07fcbe16d735"],
-  ["Caramel Macchiato", "coffee", 28000, "Kopi susu dengan sentuhan karamel.", "photo-1517701604599-bb29b565090c"],
-  ["Matcha Latte", "noncoffee", 25000, "Matcha creamy dengan rasa khas.", "photo-1515823064-d6e0c04616a7"],
-  ["Chocolate Milk", "noncoffee", 22000, "Minuman cokelat dingin.", "photo-1542990253-0b8be8a7b9f5"],
-  ["Strawberry Milk", "noncoffee", 22000, "Susu segar dengan rasa stroberi.", "photo-1553787499-6f9133860278"],
-  ["Lemon Tea", "noncoffee", 15000, "Teh segar dengan sentuhan lemon.", "photo-1556679343-c7306c1976bc"],
-  ["Nasi Goreng", "food", 25000, "Nasi goreng dengan bumbu pilihan.", "photo-1512058564366-18510be2db19"],
-  ["Chicken Rice", "food", 28000, "Nasi hangat dengan ayam berbumbu.", "photo-1546069901-ba9599a7e63c"],
-  ["Mie Goreng", "food", 22000, "Mie goreng gurih dengan topping.", "photo-1569718212165-3a8278d5f624"],
-  ["Chicken Katsu", "food", 30000, "Ayam crispy dengan saus pilihan.", "photo-1562967914-608f82629710"],
-  ["French Fries", "snack", 18000, "Kentang goreng renyah.", "photo-1573080496219-bb080dd4f877"],
-  ["Pisang Goreng", "snack", 15000, "Pisang goreng hangat dan renyah.", "photo-1601050690597-df0568f70950"],
-  ["Donat Cokelat", "dessert", 16000, "Donat lembut dengan topping cokelat.", "photo-1551024506-0bccd828d307"],
-  ["Waffle", "dessert", 23000, "Waffle hangat dengan topping manis.", "photo-1562376552-0d160a2f238d"]
-].map((item, index) => ({
-  id: index + 1,
-  name: item[0],
-  category: item[1],
-  price: item[2],
-  description: item[3],
-  image: "https://images.unsplash.com/" + item[4] + "?w=700&q=80"
-}));
-
-const categoryNames = {
-  coffee: "Coffee",
-  noncoffee: "Non-Coffee",
-  food: "Makanan",
-  snack: "Camilan",
-  dessert: "Dessert"
-};
-
-/* =========================================
-   MENU: SEARCH, FILTER, SORT, RENDER
-========================================= */
-let activeCategory = "all";
-
-function renderMenu() {
-  const grid = $("menuGrid");
-  if (!grid) return;
-
-  const keyword = ($("searchMenu")?.value || "").trim().toLowerCase();
-  const sort = $("sortMenu")?.value || "default";
-
-  let list = products.filter(product => {
-    const matchesCategory =
-      activeCategory === "all" || product.category === activeCategory;
-
-    const matchesSearch =
-      product.name.toLowerCase().includes(keyword) ||
-      product.description.toLowerCase().includes(keyword) ||
-      categoryNames[product.category].toLowerCase().includes(keyword);
-
-    return matchesCategory && matchesSearch;
-  });
-
-  if (sort === "low") list.sort((a, b) => a.price - b.price);
-  if (sort === "high") list.sort((a, b) => b.price - a.price);
-  if (sort === "name") list.sort((a, b) => a.name.localeCompare(b.name, "id"));
-
-  if (!list.length) {
-    grid.innerHTML = `
-      <div style="grid-column:1/-1;text-align:center;padding:35px;background:white;border-radius:12px">
-        <h3>Menu tidak ditemukan</h3>
-        <p style="color:#897c71">Coba kata pencarian atau kategori lain.</p>
-      </div>`;
-    return;
-  }
-
-  grid.innerHTML = list.map(product => `
-    <article class="menu-card">
-      <img
-        src="${safe(product.image)}"
-        alt="${safe(product.name)}"
-        loading="lazy"
-        onerror="this.onerror=null;this.src='https://placehold.co/600x400/f3e8d9/38251d?text=Kopi+PLM'">
-      <div class="menu-body">
-        <div class="menu-meta">
-          <span class="pill">${safe(categoryNames[product.category])}</span>
-        </div>
-        <h3>${safe(product.name)}</h3>
-        <p>${safe(product.description)}</p>
-        <div class="menu-meta">
-          <span class="price">${rupiah(product.price)}</span>
-        </div>
-        <button class="btn btn-gold" type="button" onclick="addToCart(${product.id})">
-          + Tambah ke Keranjang
-        </button>
-      </div>
-    </article>
-  `).join("");
-}
-
-$("searchMenu")?.addEventListener("input", renderMenu);
-$("sortMenu")?.addEventListener("change", renderMenu);
-
-$("categoryList")?.addEventListener("click", event => {
-  const button = event.target.closest("[data-category]");
-  if (!button) return;
-
-  activeCategory = button.dataset.category;
-
-  document.querySelectorAll("#categoryList .category").forEach(item => {
-    item.classList.toggle("active", item === button);
-  });
-
-  renderMenu();
-});
-
-/* =========================================
-   KERANJANG
-========================================= */
-let cart = readData("plm_cart", []);
-let appliedVoucher = "";
-
-const vouchers = {
-  "PLM10": 10,
-  "HEMAT5": 5
-};
-
-function saveCart() {
-  saveData("plm_cart", cart);
-  renderCart();
-}
-
-function addToCart(id) {
-  const product = products.find(item => item.id === Number(id));
-  if (!product) return;
-
-  const existing = cart.find(item => item.id === product.id);
-
-  if (existing) {
-    existing.qty += 1;
-  } else {
-    cart.push({
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      qty: 1
-    });
-  }
-
-  saveCart();
-  toast(product.name + " ditambahkan ke keranjang.");
-}
-
-function changeQty(id, amount) {
-  const item = cart.find(product => product.id === Number(id));
-  if (!item) return;
-
-  item.qty += amount;
-  if (item.qty <= 0) {
-    cart = cart.filter(product => product.id !== Number(id));
-  }
-
-  saveCart();
-}
-
-function getSubtotal() {
-  return cart.reduce((total, item) => total + item.price * item.qty, 0);
-}
-
-function getDiscount() {
-  const percentage = vouchers[appliedVoucher] || 0;
-  return Math.round(getSubtotal() * percentage / 100);
-}
-
-function renderCart() {
-  const items = $("cartItems");
-  const count = cart.reduce((total, item) => total + item.qty, 0);
-
-  if ($("cartCount")) $("cartCount").textContent = count;
-
-  if (items) {
-    if (!cart.length) {
-      items.innerHTML = `
-        <div style="text-align:center;padding:35px 10px;color:#897c71">
-          <div style="font-size:35px">🛒</div>
-          <b>Keranjang masih kosong</b>
-          <p>Yuk, pilih menu favoritmu.</p>
-        </div>`;
-    } else {
-      items.innerHTML = cart.map(item => `
-        <div class="cart-line">
-          <div>
-            <b>${safe(item.name)}</b>
-            <small>${rupiah(item.price)} × ${item.qty}</small>
-            <b>${rupiah(item.price * item.qty)}</b>
-          </div>
-          <div class="qty">
-            <button type="button" onclick="changeQty(${item.id},-1)">−</button>
-            <b>${item.qty}</b>
-            <button type="button" onclick="changeQty(${item.id},1)">+</button>
-          </div>
-        </div>
-      `).join("");
-    }
-  }
-
-  const subtotal = getSubtotal();
-  const discount = getDiscount();
-
-  if ($("cartSubtotal")) $("cartSubtotal").textContent = rupiah(subtotal);
-  if ($("cartDiscount")) $("cartDiscount").textContent = rupiah(discount);
-  if ($("cartTotal")) $("cartTotal").textContent = rupiah(subtotal - discount);
-}
-
-function showCart() {
-  $("cartDrawer")?.classList.add("open");
-  $("cartOverlay")?.classList.add("show");
-}
-
-function hideCart() {
-  $("cartDrawer")?.classList.remove("open");
-  $("cartOverlay")?.classList.remove("show");
-}
-
-$("openCart")?.addEventListener("click", showCart);
-$("closeCart")?.addEventListener("click", hideCart);
-$("cartOverlay")?.addEventListener("click", hideCart);
-
-$("applyVoucher")?.addEventListener("click", () => {
-  const code = ($("voucherCode")?.value || "").trim().toUpperCase();
-
-  if (!code) {
-    toast("Masukkan kode voucher terlebih dahulu.");
-    return;
-  }
-
-  if (!vouchers[code]) {
-    appliedVoucher = "";
-    $("voucherMessage").textContent = "Kode voucher tidak valid.";
-    renderCart();
-    return;
-  }
-
-  appliedVoucher = code;
-  $("voucherMessage").textContent =
-    "Voucher " + code + " berhasil digunakan (" + vouchers[code] + "%).";
-  renderCart();
-});
-
-/* =========================================
-   CHECKOUT DAN DATA PESANAN
-========================================= */
-let orders = readData("plm_orders", []);
-
-$("checkoutForm")?.addEventListener("submit", event => {
-  event.preventDefault();
-
-  if (!cart.length) {
-    toast("Keranjang masih kosong.");
-    return;
-  }
-
-  const form = new FormData(event.currentTarget);
-  const name = String(form.get("name") || "").trim();
-  const phone = String(form.get("phone") || "").trim();
-
-  if (!name || !phone) {
-    toast("Lengkapi nama dan nomor WhatsApp.");
-    return;
-  }
-
-  const order = {
-    code: makeCode("PLM"),
-    name,
-    phone,
-    table: String(form.get("table") || ""),
-    notes: String(form.get("notes") || ""),
-    items: cart.map(item => ({ ...item })),
-    subtotal: getSubtotal(),
-    discount: getDiscount(),
-    total: getSubtotal() - getDiscount(),
-    status: "Menunggu konfirmasi",
-    date: new Date().toLocaleString("id-ID")
-  };
-
-  orders.unshift(order);
-
-  if (!saveData("plm_orders", orders)) return;
-
-  const itemText = order.items
-    .map(item => `${item.name} x${item.qty} = ${rupiah(item.price * item.qty)}`)
-    .join("\n");
-
-  const message = [
-    "*PESANAN KOPI P,L,M*",
-    "Kode: " + order.code,
-    "Nama: " + order.name,
-    "WhatsApp: " + order.phone,
-    "Meja: " + (order.table || "Tidak ditentukan"),
-    "",
-    "*Detail pesanan:*",
-    itemText,
-    "",
-    "Subtotal: " + rupiah(order.subtotal),
-    "Diskon: " + rupiah(order.discount),
-    "*Total: " + rupiah(order.total) + "*",
-    "Catatan: " + (order.notes || "-")
-  ].join("\n");
-
-  cart = [];
-  appliedVoucher = "";
-  saveCart();
-  event.currentTarget.reset();
-  hideCart();
-  renderAdmin();
-
-  toast("Pesanan dibuat. Kode: " + order.code);
-  openWhatsApp(message);
-});
-
-/* =========================================
-   RESERVASI
-========================================= */
-let reservations = readData("plm_reservations", []);
-
-const dateInput = $("reservationDate");
-if (dateInput) {
-  const today = new Date();
-  const localDate = new Date(today.getTime() - today.getTimezoneOffset() * 60000)
-    .toISOString().split("T")[0];
-  dateInput.min = localDate;
-}
-
-$("reservationForm")?.addEventListener("submit", event => {
-  event.preventDefault();
-
-  const form = new FormData(event.currentTarget);
-
-  const reservation = {
-    code: makeCode("RSV"),
-    name: String(form.get("name") || "").trim(),
-    phone: String(form.get("phone") || "").trim(),
-    date: String(form.get("date") || ""),
-    time: String(form.get("time") || ""),
-    guests: String(form.get("guests") || ""),
-    table: String(form.get("table") || ""),
-    notes: String(form.get("notes") || ""),
-    status: "Menunggu konfirmasi",
-    created: new Date().toLocaleString("id-ID")
-  };
-
-  if (!reservation.name || !reservation.phone ||
-      !reservation.date || !reservation.time) {
-    toast("Lengkapi data reservasi terlebih dahulu.");
-    return;
-  }
-
-  reservations.unshift(reservation);
-
-  if (!saveData("plm_reservations", reservations)) return;
-
-  const message = [
-    "*PENGAJUAN RESERVASI KOPI P,L,M*",
-    "Kode: " + reservation.code,
-    "Nama: " + reservation.name,
-    "WhatsApp: " + reservation.phone,
-    "Tanggal: " + reservation.date,
-    "Waktu: " + reservation.time,
-    "Jumlah pengunjung: " + reservation.guests,
-    "Meja: " + (reservation.table || "Bebas"),
-    "Catatan: " + (reservation.notes || "-")
-  ].join("\n");
-
-  event.currentTarget.reset();
-  renderAdmin();
-  toast("Reservasi berhasil dicatat.");
-  openWhatsApp(message);
-});
-
-/* =========================================
-   LACAK PESANAN
-========================================= */
-$("trackingForm")?.addEventListener("submit", event => {
-  event.preventDefault();
-
-  const form = new FormData(event.currentTarget);
-  const code = String(form.get("orderCode") || "").trim().toUpperCase();
-
-  const order = orders.find(item => item.code.toUpperCase() === code);
-  const result = $("trackingResult");
-
-  if (!result) return;
-
-  if (!order) {
-    result.innerHTML = `
-      <div class="result-box">
-        <b>Pesanan tidak ditemukan.</b>
-        <p>Periksa kembali kode pesananmu.</p>
-      </div>`;
-    return;
-  }
-
-  result.innerHTML = `
-    <div class="result-box">
-      <span class="eyebrow">STATUS PESANAN</span>
-      <h3>${safe(order.code)}</h3>
-      <p>Nama: ${safe(order.name)}</p>
-      <p>Status: <b>${safe(order.status)}</b></p>
-      <p>Total: <b>${rupiah(order.total)}</b></p>
-      <small>Pesanan tersimpan di browser perangkat ini.</small>
-    </div>`;
-});
-
-/* =========================================
-   ULASAN PELANGGAN
-========================================= */
-let reviews = readData("plm_reviews", []);
-
-function renderReviews() {
-  const list = $("reviewsList");
-  if (!list) return;
-
-  if (!reviews.length) {
-    list.innerHTML = `
-      <div class="stat" style="grid-column:1/-1;text-align:center">
-        Belum ada ulasan. Jadilah yang pertama memberikan ulasan!
-      </div>`;
-    return;
-  }
-
-  list.innerHTML = reviews.slice(0, 12).map(review => `
-    <div class="stat">
-      <strong>${"★".repeat(Number(review.rating) || 5)}</strong>
-      <b>${safe(review.name)}</b>
-      <p>${safe(review.comment)}</p>
-      <small>${safe(review.date)}</small>
+  <!-- Navbar start -->
+  <nav class="navbar">
+    <a href="#" class="navbar-logo">kenangan<span>senja</span>.</a>
+
+    <div class="navbar-nav">
+      <a href="#home">Home</a>
+      <a href="#about">Tentang Kami</a>
+      <a href="#menu">Menu</a>
+      <a href="#products">Produk</a>
+      <a href="#contact">Kontak</a>
     </div>
-  `).join("");
-}
 
-$("reviewForm")?.addEventListener("submit", event => {
-  event.preventDefault();
+    <div class="navbar-extra">
+      <a href="#" id="search-button"><i data-feather="search"></i></a>
+      <a href="#" id="shopping-cart-button"><i data-feather="shopping-cart"></i></a>
+      <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+    </div>
 
-  const form = new FormData(event.currentTarget);
+    <!-- Search Form start -->
+    <div class="search-form">
+      <input type="search" id="search-box" placeholder="search here...">
+      <label for="search-box"><i data-feather="search"></i></label>
+    </div>
+    <!-- Search Form end -->
 
-  const review = {
-    name: String(form.get("name") || "").trim(),
-    rating: Number(form.get("rating")) || 5,
-    comment: String(form.get("comment") || "").trim(),
-    date: new Date().toLocaleDateString("id-ID")
-  };
-
-  if (!review.name || !review.comment) {
-    toast("Isi nama dan ulasan terlebih dahulu.");
-    return;
-  }
-
-  reviews.unshift(review);
-
-  if (!saveData("plm_reviews", reviews)) return;
-
-  event.currentTarget.reset();
-  renderReviews();
-  toast("Terima kasih atas ulasanmu!");
-});
-
-/* =========================================
-   DASHBOARD ADMIN
-========================================= */
-let adminLoggedIn = false;
-
-function renderAdmin() {
-  if (!adminLoggedIn) return;
-
-  const stats = $("adminStats");
-  const orderList = $("adminOrders");
-  const reservationList = $("adminReservations");
-
-  if (stats) {
-    const totalRevenue = orders.reduce((sum, order) => sum + order.total, 0);
-
-    stats.innerHTML = `
-      <div class="stat"><small>Total pesanan</small><strong>${orders.length}</strong></div>
-      <div class="stat"><small>Total reservasi</small><strong>${reservations.length}</strong></div>
-      <div class="stat"><small>Total transaksi</small><strong>${rupiah(totalRevenue)}</strong></div>`;
-  }
-
-  if (orderList) {
-    orderList.innerHTML = orders.length
-      ? orders.map((order, index) => `
-        <div class="admin-row">
-          <b>${safe(order.code)} - ${safe(order.name)}</b>
-          <p>${rupiah(order.total)} | ${safe(order.date)}</p>
-          <p>Status: <b>${safe(order.status)}</b></p>
-          <select onchange="updateOrderStatus(${index}, this.value)">
-            ${[
-              "Menunggu konfirmasi",
-              "Diproses",
-              "Siap diambil",
-              "Selesai",
-              "Dibatalkan"
-            ].map(status => `
-              <option value="${safe(status)}" ${order.status === status ? "selected" : ""}>
-                ${safe(status)}
-              </option>
-            `).join("")}
-          </select>
+    <!-- Shopping Cart start -->
+    <div class="shopping-cart">
+      <div class="cart-item">
+        <img src="img/Products/1.jpg" alt="Product 1">
+        <div class="item-detail">
+          <h3>Product 1</h3>
+          <div class="item-price">IDR 30K</div>
         </div>
-      `).join("")
-      : "<p>Belum ada pesanan.</p>";
-  }
-
-  if (reservationList) {
-    reservationList.innerHTML = reservations.length
-      ? reservations.map((reservation, index) => `
-        <div class="admin-row">
-          <b>${safe(reservation.code)} - ${safe(reservation.name)}</b>
-          <p>${safe(reservation.date)} pukul ${safe(reservation.time)}</p>
-          <p>${safe(reservation.guests)} pengunjung | ${safe(reservation.phone)}</p>
-          <p>Status: <b>${safe(reservation.status)}</b></p>
-          <select onchange="updateReservationStatus(${index}, this.value)">
-            ${[
-              "Menunggu konfirmasi",
-              "Dikonfirmasi",
-              "Selesai",
-              "Dibatalkan"
-            ].map(status => `
-              <option value="${safe(status)}" ${reservation.status === status ? "selected" : ""}>
-                ${safe(status)}
-              </option>
-            `).join("")}
-          </select>
+        <i data-feather="trash-2" class="remove-item"></i>
+      </div>
+      <div class="cart-item">
+        <img src="img/Products/1.jpg" alt="Product 1">
+        <div class="item-detail">
+          <h3>Product 1</h3>
+          <div class="item-price">IDR 30K</div>
         </div>
-      `).join("")
-      : "<p>Belum ada reservasi.</p>";
-  }
-}
+        <i data-feather="trash-2" class="remove-item"></i>
+      </div>
+      <div class="cart-item">
+        <img src="img/Products/1.jpg" alt="Product 1">
+        <div class="item-detail">
+          <h3>Product 1</h3>
+          <div class="item-price">IDR 30K</div>
+        </div>
+        <i data-feather="trash-2" class="remove-item"></i>
+      </div>
+    </div>
+    <!-- Shopping Cart end -->
 
-function updateOrderStatus(index, status) {
-  if (!orders[index]) return;
-  orders[index].status = status;
-  saveData("plm_orders", orders);
-  renderAdmin();
-  toast("Status pesanan diperbarui.");
-}
+  </nav>
+  <!-- Navbar end -->
 
-function updateReservationStatus(index, status) {
-  if (!reservations[index]) return;
-  reservations[index].status = status;
-  saveData("plm_reservations", reservations);
-  renderAdmin();
-  toast("Status reservasi diperbarui.");
-}
+  <!-- Hero Section start -->
+  <section class="hero" id="home">
+    <div class="mask-container">
+      <main class="content">
+        <h1>Mari Nikmati Secangkir <span>Kopi</span></h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, enim.</p>
+      </main>
+    </div>
+  </section>
+  <!-- Hero Section end -->
 
-$("adminLogin")?.addEventListener("click", () => {
-  const password = $("adminPassword")?.value || "";
+  <!-- About Section start -->
+  <section id="about" class="about">
+    <h2><span>Tentang</span> Kami</h2>
 
-  if (password !== ADMIN_PASSWORD) {
-    toast("Password admin salah.");
-    return;
-  }
+    <div class="row">
+      <div class="about-img">
+        <img src="img/tentang-kami.jpg" alt="Tentang Kami">
+      </div>
+      <div class="content">
+        <h3>Kenapa memilih kopi kami?</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur ducimus voluptatum dolor. Et, voluptatum
+          accusantium!</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic deserunt iure amet facilis eos a quo cum
+          voluptates molestias nihil.</p>
+      </div>
+    </div>
+  </section>
+  <!-- About Section end -->
 
-  adminLoggedIn = true;
-  $("adminLoginPanel").hidden = true;
-  $("adminPanel").hidden = false;
-  renderAdmin();
-  toast("Berhasil masuk dashboard.");
-});
+  <!-- Menu Section start -->
+  <section id="menu" class="menu">
+    <h2><span>Menu</span> Kami</h2>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita, repellendus numquam quam tempora voluptatum.
+    </p>
 
-$("adminPassword")?.addEventListener("keydown", event => {
-  if (event.key === "Enter") $("adminLogin")?.click();
-});
+    <div class="row">
+      <div class="menu-card">
+        <img src="img/Menu/1.jpg" alt="Espresso" class="menu-card-img">
+        <h3 class="menu-card-title">- Espresso -</h3>
+        <p class="menu-card-price">IDR 15K</p>
+      </div>
+      <div class="menu-card">
+        <img src="img/Menu/1.jpg" alt="Espresso" class="menu-card-img">
+        <h3 class="menu-card-title">- Capuccino -</h3>
+        <p class="menu-card-price">IDR 25K</p>
+      </div>
+      <div class="menu-card">
+        <img src="img/Menu/1.jpg" alt="Espresso" class="menu-card-img">
+        <h3 class="menu-card-title">- Latte -</h3>
+        <p class="menu-card-price">IDR 20K</p>
+      </div>
+      <div class="menu-card">
+        <img src="img/Menu/1.jpg" alt="Espresso" class="menu-card-img">
+        <h3 class="menu-card-title">- Espresso -</h3>
+        <p class="menu-card-price">IDR 15K</p>
+      </div>
+      <div class="menu-card">
+        <img src="img/Menu/1.jpg" alt="Espresso" class="menu-card-img">
+        <h3 class="menu-card-title">- Espresso -</h3>
+        <p class="menu-card-price">IDR 15K</p>
+      </div>
+      <div class="menu-card">
+        <img src="img/Menu/1.jpg" alt="Espresso" class="menu-card-img">
+        <h3 class="menu-card-title">- Espresso -</h3>
+        <p class="menu-card-price">IDR 15K</p>
+      </div>
+    </div>
+  </section>
+  <!-- Menu Section end -->
 
-$("adminLogout")?.addEventListener("click", () => {
-  adminLoggedIn = false;
-  $("adminPanel").hidden = true;
-  $("adminLoginPanel").hidden = false;
-  if ($("adminPassword")) $("adminPassword").value = "";
-});
+  <!-- Products Section start -->
+  <section class="products" id="products">
+    <h2><span>Produk Unggulan</span> Kami</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo unde eum, ab fuga possimus iste.</p>
 
-$("exportOrders")?.addEventListener("click", () => {
-  if (!orders.length) {
-    toast("Belum ada pesanan untuk diekspor.");
-    return;
-  }
+    <div class="row">
+      <div class="product-card">
+        <div class="product-icons">
+          <a href="#"><i data-feather="shopping-cart"></i></a>
+          <a href="#" class="item-detail-button"><i data-feather="eye"></i></a>
+        </div>
+        <div class="product-image">
+          <img src="img/Products/1.jpg" alt="Product 1">
+        </div>
+        <div class="product-content">
+          <h3>Coffee Beans 1</h3>
+          <div class="product-stars">
+            <i data-feather="star" class="star-full"></i>
+            <i data-feather="star" class="star-full"></i>
+            <i data-feather="star" class="star-full"></i>
+            <i data-feather="star" class="star-full"></i>
+            <i data-feather="star"></i>
+          </div>
+          <div class="product-price">IDR 30K <span>IDR 55K</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-icons">
+          <a href="#"><i data-feather="shopping-cart"></i></a>
+          <a href="#" class="item-detail-button"><i data-feather="eye"></i></a>
+        </div>
+        <div class="product-image">
+          <img src="img/Products/1.jpg" alt="Product 1">
+        </div>
+        <div class="product-content">
+          <h3>Coffee Beans 1</h3>
+          <div class="product-stars">
+            <i data-feather="star"></i>
+            <i data-feather="star"></i>
+            <i data-feather="star"></i>
+            <i data-feather="star"></i>
+            <i data-feather="star"></i>
+          </div>
+          <div class="product-price">IDR 30K <span>IDR 55K</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-icons">
+          <a href="#"><i data-feather="shopping-cart"></i></a>
+          <a href="#" class="item-detail-button"><i data-feather="eye"></i></a>
+        </div>
+        <div class="product-image">
+          <img src="img/Products/1.jpg" alt="Product 1">
+        </div>
+        <div class="product-content">
+          <h3>Coffee Beans 1</h3>
+          <div class="product-stars">
+            <i data-feather="star"></i>
+            <i data-feather="star"></i>
+            <i data-feather="star"></i>
+            <i data-feather="star"></i>
+            <i data-feather="star"></i>
+          </div>
+          <div class="product-price">IDR 30K <span>IDR 55K</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Products Section end -->
 
-  const rows = [
-    ["Kode", "Nama", "WhatsApp", "Total", "Status", "Tanggal"],
-    ...orders.map(order => [
-      order.code,
-      order.name,
-      order.phone,
-      order.total,
-      order.status,
-      order.date
-    ])
-  ];
+  <!-- Contact Section start -->
+  <section id="contact" class="contact">
+    <h2><span>Kontak</span> Kami</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, provident.
+    </p>
 
-  const csv = rows.map(row =>
-    row.map(value =>
-      '"' + String(value ?? "").replace(/"/g, '""') + '"'
-    ).join(",")
-  ).join("\r\n");
+    <div class="row">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126748.56347862248!2d107.57311709235512!3d-6.903444341687889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6398252477f%3A0x146a1f93d3e815b2!2sBandung%2C%20Bandung%20City%2C%20West%20Java!5e0!3m2!1sen!2sid!4v1672408575523!5m2!1sen!2sid"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map"></iframe>
 
-  const blob = new Blob(["\uFEFF" + csv], {
-    type: "text/csv;charset=utf-8;"
-  });
+      <form action="">
+        <div class="input-group">
+          <i data-feather="user"></i>
+          <input type="text" placeholder="nama">
+        </div>
+        <div class="input-group">
+          <i data-feather="mail"></i>
+          <input type="text" placeholder="email">
+        </div>
+        <div class="input-group">
+          <i data-feather="phone"></i>
+          <input type="text" placeholder="no hp">
+        </div>
+        <button type="submit" class="btn">kirim pesan</button>
+      </form>
 
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
+    </div>
+  </section>
+  <!-- Contact Section end -->
 
-  link.href = url;
-  link.download = "pesanan-kopi-plm.csv";
+  <!-- Footer start -->
+  <footer>
+    <div class="socials">
+      <a href="#"><i data-feather="instagram"></i></a>
+      <a href="#"><i data-feather="twitter"></i></a>
+      <a href="#"><i data-feather="facebook"></i></a>
+    </div>
 
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
+    <div class="links">
+      <a href="#home">Home</a>
+      <a href="#about">Tentang Kami</a>
+      <a href="#menu">Menu</a>
+      <a href="#contact">Kontak</a>
+    </div>
 
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
+    <div class="credit">
+      <p>Created by <a href="">sandhikagalih</a>. | &copy; 2023.</p>
+    </div>
+  </footer>
+  <!-- Footer end -->
 
-  toast("File CSV berhasil dibuat.");
-});
-/* =========================================
-   EKSPOR RATING DAN ULASAN KE EXCEL
-========================================= */
+  <!-- Modal Box Item Detail start -->
+  <div class="modal" id="item-detail-modal">
+    <div class="modal-container">
+      <a href="#" class="close-icon"><i data-feather="x"></i></a>
+      <div class="modal-content">
+        <img src="img/Products/1.jpg" alt="Product 1">
+        <div class="product-content">
+          <h3>Product 1</h3>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident, tenetur cupiditate facilis obcaecati
+            ullam maiores minima quos perspiciatis similique itaque, esse rerum eius repellendus voluptatibus!</p>
+          <div class="product-stars">
+            <i data-feather="star" class="star-full"></i>
+            <i data-feather="star" class="star-full"></i>
+            <i data-feather="star" class="star-full"></i>
+            <i data-feather="star" class="star-full"></i>
+            <i data-feather="star"></i>
+          </div>
+          <div class="product-price">IDR 30K <span>IDR 55K</span></div>
+          <a href="#"><i data-feather="shopping-cart"></i> <span>add to cart</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal Box Item Detail end -->
 
-$("exportReviews")?.addEventListener("click", () => {
-  if (!reviews.length) {
-    toast("Belum ada ulasan pelanggan.");
-    return;
-  }
+  <!-- Feather Icons -->
+  <script>
+    feather.replace()
+  </script>
 
-  const rows = [
-    ["Nama Pelanggan", "Rating", "Komentar", "Tanggal"],
-
-    ...reviews.map(review => [
-      review.name,
-      review.rating + " Bintang",
-      review.comment,
-      review.date
-    ])
-  ];
-
-  const csv = rows.map(row =>
-    row.map(value =>
-      '"' + String(value ?? "").replace(/"/g, '""') + '"'
-    ).join(";")
-  ).join("\r\n");
-
-  const blob = new Blob(
-    ["\uFEFF" + csv],
-    { type: "text/csv;charset=utf-8;" }
-  );
-
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-
-  link.href = url;
-  link.download = "rating-ulasan-kopi-plm.csv";
-
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-
-  toast("Data rating berhasil diekspor!");
-});
-/* INISIALISASI */
-if ($("year")) {
-  $("year").textContent = new Date().getFullYear();
-}
-
-renderMenu();
-renderCart();
-renderReviews();
-
-</script>
+  <!-- My Javascript -->
+  <script src="script.js"></script>
 </body>
-</html>
 
+</html>
