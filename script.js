@@ -1,159 +1,66 @@
+// Toggle class active untuk hamburger menu
+const navbarNav = document.querySelector('.navbar-nav');
+// ketika hamburger menu di klik
+document.querySelector('#hamburger-menu').onclick = () => {
+  navbarNav.classList.toggle('active');
+};
 
-document.addEventListener("DOMContentLoaded", function () {
+// Toggle class active untuk search form
+const searchForm = document.querySelector('.search-form');
+const searchBox = document.querySelector('#search-box');
 
-  const menuGrid = document.getElementById("menuGrid");
-  const searchMenu = document.getElementById("searchMenu");
-  const sortMenu = document.getElementById("sortMenu");
-  const categoryList = document.getElementById("categoryList");
+document.querySelector('#search-button').onclick = (e) => {
+  searchForm.classList.toggle('active');
+  searchBox.focus();
+  e.preventDefault();
+};
 
-  if (!menuGrid) {
-    console.error("Elemen menuGrid tidak ditemukan!");
-    return;
+// Toggle class active untuk shopping cart
+const shoppingCart = document.querySelector('.shopping-cart');
+document.querySelector('#shopping-cart-button').onclick = (e) => {
+  shoppingCart.classList.toggle('active');
+  e.preventDefault();
+};
+
+// Klik di luar elemen
+const hm = document.querySelector('#hamburger-menu');
+const sb = document.querySelector('#search-button');
+const sc = document.querySelector('#shopping-cart-button');
+
+document.addEventListener('click', function (e) {
+  if (!hm.contains(e.target) && !navbarNav.contains(e.target)) {
+    navbarNav.classList.remove('active');
   }
 
-  const menus = [
-    { name: "Espresso", price: 18000, category: "coffee", icon: "☕" },
-    { name: "Americano", price: 20000, category: "coffee", icon: "☕" },
-    { name: "Cafe Latte", price: 25000, category: "coffee", icon: "🥛" },
-    { name: "Cappuccino", price: 24000, category: "coffee", icon: "☕" },
-    { name: "Es Kopi Susu Gula Aren", price: 22000, category: "coffee", icon: "🧋" },
-    { name: "Caramel Macchiato", price: 28000, category: "coffee", icon: "☕" },
-
-    { name: "Matcha Latte", price: 25000, category: "noncoffee", icon: "🍵" },
-    { name: "Chocolate Milk", price: 22000, category: "noncoffee", icon: "🍫" },
-    { name: "Strawberry Milk", price: 23000, category: "noncoffee", icon: "🍓" },
-
-    { name: "Nasi Ayam Geprek", price: 15000, category: "food", icon: "🍗" },
-    { name: "Nasi Ayam Bakar", price: 16000, category: "food", icon: "🍛" },
-    { name: "Nasi Goreng Spesial", price: 14000, category: "food", icon: "🍚" },
-    { name: "Nasi Goreng Seafood", price: 16000, category: "food", icon: "🍤" },
-    { name: "Mie Goreng Spesial", price: 13000, category: "food", icon: "🍜" },
-    { name: "Mie Ayam Bakso", price: 15000, category: "food", icon: "🍜" },
-    { name: "Soto Ayam", price: 13000, category: "food", icon: "🥣" },
-
-    { name: "Kentang Goreng", price: 8000, category: "snack", icon: "🍟" },
-    { name: "Tahu Crispy", price: 7000, category: "snack", icon: "🍢" },
-    { name: "Tempe Mendoan", price: 7000, category: "snack", icon: "🍘" },
-    { name: "Pisang Goreng", price: 7000, category: "snack", icon: "🍌" },
-    { name: "Cireng", price: 6000, category: "snack", icon: "🥟" },
-    { name: "Roti Bakar Cokelat", price: 9000, category: "snack", icon: "🍞" },
-
-    { name: "Pancake", price: 8000, category: "dessert", icon: "🥞" },
-    { name: "Chocolate Cake", price: 12000, category: "dessert", icon: "🍰" },
-    { name: "Ice Cream", price: 5000, category: "dessert", icon: "🍨" },
-    { name: "Puding Cokelat", price: 5000, category: "dessert", icon: "🍮" }
-  ];
-
-  let activeCategory = "all";
-
-  function formatRupiah(number) {
-    return "Rp" + number.toLocaleString("id-ID");
+  if (!sb.contains(e.target) && !searchForm.contains(e.target)) {
+    searchForm.classList.remove('active');
   }
 
-  function renderMenu() {
-    let result = menus.filter(function (menu) {
-      const matchCategory =
-        activeCategory === "all" ||
-        menu.category === activeCategory;
-
-      const keyword = searchMenu
-        ? searchMenu.value.toLowerCase().trim()
-        : "";
-
-      const matchSearch =
-        menu.name.toLowerCase().includes(keyword);
-
-      return matchCategory && matchSearch;
-    });
-
-    if (sortMenu) {
-      if (sortMenu.value === "low") {
-        result.sort((a, b) => a.price - b.price);
-      } else if (sortMenu.value === "high") {
-        result.sort((a, b) => b.price - a.price);
-      } else if (sortMenu.value === "name") {
-        result.sort((a, b) => a.name.localeCompare(b.name));
-      }
-    }
-
-    if (result.length === 0) {
-      menuGrid.innerHTML = `
-        <p style="grid-column:1/-1;text-align:center;padding:30px;">
-          Menu tidak ditemukan.
-        </p>
-      `;
-      return;
-    }
-
-    menuGrid.innerHTML = result.map(function (menu) {
-      return `
-        <div class="menu-card">
-          <div style="
-            height:150px;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            background:#eee3d4;
-            border-radius:12px;
-            font-size:65px;
-          ">
-            ${menu.icon}
-          </div>
-
-          <div style="padding:14px;">
-            <h3>${menu.name}</h3>
-            <p style="font-weight:bold;color:#b68a52;">
-              ${formatRupiah(menu.price)}
-            </p>
-            <button
-              type="button"
-              class="add-to-cart"
-              data-name="${menu.name}"
-              data-price="${menu.price}"
-              style="
-                width:100%;
-                padding:11px;
-                border:0;
-                border-radius:25px;
-                background:#38251d;
-                color:white;
-                cursor:pointer;
-              "
-            >
-              + Tambah
-            </button>
-          </div>
-        </div>
-      `;
-    }).join("");
+  if (!sc.contains(e.target) && !shoppingCart.contains(e.target)) {
+    shoppingCart.classList.remove('active');
   }
-
-  if (searchMenu) {
-    searchMenu.addEventListener("input", renderMenu);
-  }
-
-  if (sortMenu) {
-    sortMenu.addEventListener("change", renderMenu);
-  }
-
-  if (categoryList) {
-    categoryList.addEventListener("click", function (event) {
-      const button = event.target.closest("[data-category]");
-      if (!button) return;
-
-      activeCategory = button.dataset.category;
-
-      categoryList.querySelectorAll("[data-category]")
-        .forEach(function (item) {
-          item.classList.remove("active");
-        });
-
-      button.classList.add("active");
-      renderMenu();
-    });
-  }
-
-  // Tampilkan menu saat halaman dibuka
-  renderMenu();
-
 });
+
+// Modal Box
+const itemDetailModal = document.querySelector('#item-detail-modal');
+const itemDetailButtons = document.querySelectorAll('.item-detail-button');
+
+itemDetailButtons.forEach((btn) => {
+  btn.onclick = (e) => {
+    itemDetailModal.style.display = 'flex';
+    e.preventDefault();
+  };
+});
+
+// klik tombol close modal
+document.querySelector('.modal .close-icon').onclick = (e) => {
+  itemDetailModal.style.display = 'none';
+  e.preventDefault();
+};
+
+// klik di luar modal
+window.onclick = (e) => {
+  if (e.target === itemDetailModal) {
+    itemDetailModal.style.display = 'none';
+  }
+};
